@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, getIdToken } from "firebase/auth";
 import initializeFirebase from '../Firebase/firebase.init';
 
 // initialize firebase app
@@ -17,7 +17,7 @@ const useFirebase = () => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const destination = location?.state?.from || '/';
+                const destination = '/addnotes';
                 history.replace(destination);
                 setAuthError('');
                 const newUser = { email, displayName: name };
@@ -34,8 +34,8 @@ const useFirebase = () => {
     }
 
     const saveUser = (email, displayName) => {
-        const user = {email, displayName};
-        fetch('https://damp-citadel-69282.herokuapp.com/users', {
+        const user = {email, displayName, status: 'pending'};
+        fetch('https://fathomless-beach-05738.herokuapp.com/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -49,7 +49,7 @@ const useFirebase = () => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const destination = location?.state?.from || '/';
+                const destination = '/addnotes';
                 history.replace(destination);
                 setAuthError('');
             })
@@ -63,6 +63,8 @@ const useFirebase = () => {
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
             if (user) {
+                getIdToken(user)
+                    .then(idToken => localStorage.setItem('idToken', idToken))
                 setUser(user);
             } else {
                 setUser({})
@@ -73,7 +75,7 @@ const useFirebase = () => {
     }, []);
 
     useEffect(() => {
-        fetch(`https://damp-citadel-69282.herokuapp.com/users/${user.email}`)
+        fetch(`https://fathomless-beach-05738.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data))
     }, [user.email])

@@ -22,24 +22,27 @@ const Login = () => {
         loginUser(loginData.email, loginData.password, location, history);
     }
     return (
-        <div class="center">
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <div class="txt_field">
-                    <input type="email" onBlur={handleOnChange} name="email" required />
-                    <span></span>
-                    <label>Email</label>
-                </div>
-                <div class="txt_field">
-                    <input type="password" name="password" onBlur={handleOnChange} required />
-                    <span></span>
-                    <label>Password</label>
-                </div>
-                <input type="submit" value="Login" />
-                <div class="signup_link">
-                    Not a member?<NavLink to="/signup"><a href="#">Signup</a></NavLink>
-                </div>
-            </form>
+        <div className="form-bg">
+            <div class="center">
+                <h1>Login</h1>
+                <form onSubmit={handleSubmit}>
+                    <div class="txt_field">
+                        <input type="email" onBlur={handleOnChange} name="email" required />
+                        <span></span>
+                        <label>Email</label>
+                    </div>
+                    <div class="txt_field">
+                        <input type="password" name="password" onBlur={handleOnChange} required />
+                        <span></span>
+                        <label>Password</label>
+                    </div>
+                    <input type="submit" value="Login" />
+                    <h4>{authError}</h4>
+                    <div class="signup_link">
+                        Not a member?<NavLink to="/signup"><a href="#">Signup</a></NavLink>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

@@ -8,7 +8,7 @@
 body{
   margin: 0;
   padding: 0;
-  background: linear-gradient(120deg,#2980b9, #8e44ad);
+  background: #dcdde1;
   height: 100vh;
   overflow: hidden;
 }
@@ -20,7 +20,7 @@ body{
   width: 400px;
   background: white;
   border-radius: 10px;
-  box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .center h1{
   text-align: center;
