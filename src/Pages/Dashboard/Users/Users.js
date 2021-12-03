@@ -18,6 +18,8 @@ const Users = () => {
             }
             else if (res.status === 401) {
                 history.push('/');
+
+                
             }
 
         })

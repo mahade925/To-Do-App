@@ -26,6 +26,8 @@ import Users from '../Users/Users';
 import DeleteUser from '../DeleteUser/DeleteUser';
 import EditUser from '../EditUser/EditUser';
 import Navigation from '../../Navigation/Navigation';
+import DashbaordAllNotes from '../DashboardAllNotes/DashbaordAllNotes';
+import DashboardHome from '../DashboardHome/DashboardHome';
 
 const drawerWidth = 200;
 
@@ -45,14 +47,14 @@ function Dashboard(props) {
             <Divider />
             {console.log(admin)}
 
+            <NavLink to={`${url}/dashboardHome`}><h5>Home</h5></NavLink>
             {
                 admin.admin ? <div className="dashboard-nav-link">
                     <Link to={`${url}/users`}><h5>Users</h5></Link>
                     <Link to={`${url}/edituser`}><h5>Edit User</h5></Link>
                     <Link to={`${url}/deleteuser`}><h5>Delete User</h5></Link>
                 </div> : <div className="dashboard-nav-link">
-                    <Link to={`${url}/pay`}><h3>Subscription</h3></Link>
-                    <Link to={`${url}/myOrders`}><h3>Edit Profile</h3></Link>
+                    <Link to={`${url}/dashboardallnotes`}><h3>All Notes</h3></Link>
                 </div>
             }
             <NavLink to="/"><button onClick={logout} className="btn btn-danger">Logout</button></NavLink>
@@ -133,6 +135,9 @@ function Dashboard(props) {
                 <Toolbar />
 
                 <Switch>
+                    <Route path={`${path}/dashboardHome`}>
+                        <DashboardHome></DashboardHome>
+                    </Route>
                     <Route path={`${path}/users`}>
                         <Users></Users>
                     </Route>
@@ -141,6 +146,9 @@ function Dashboard(props) {
                     </Route>
                     <Route path={`${path}/deleteuser`}>
                         <DeleteUser></DeleteUser>
+                    </Route>
+                    <Route path={`${path}/dashboardallnotes`}>
+                        <DashbaordAllNotes></DashbaordAllNotes>
                     </Route>
                 </Switch>
 

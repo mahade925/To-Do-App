@@ -52,7 +52,7 @@ const ResponsiveAppBar = () => {
                         <NavLink to="/addnotes">
                                 <h5 style={{ color: 'white', marginLeft: '40px', cursor: 'pointer' }}>All Notes</h5>
                             </NavLink>
-                            <NavLink to="/dashboard/users">
+                            <NavLink to="/dashboard/dashboardhome/dashboardHome">
                                 <h5 style={{ color: 'white', marginLeft: '20px', cursor: 'pointer' }}>Dashboard</h5>
                             </NavLink>
                             <NavLink to="/subscription">
@@ -62,7 +62,7 @@ const ResponsiveAppBar = () => {
                             <NavLink to="/addnotes">
                                 <h5 style={{ color: 'white', marginLeft: '40px', cursor: 'pointer' }}>Add Note</h5>
                             </NavLink>
-                            <NavLink to="/dashboard/users">
+                            <NavLink to="/dashboard/dashboardhome/dashboardHome">
                                 <h5 style={{ color: 'white', marginLeft: '20px', cursor: 'pointer' }}>Dashboard</h5>
                             </NavLink>
                             <NavLink to="/subscription">

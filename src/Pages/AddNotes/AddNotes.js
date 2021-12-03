@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
 const AddNotes = () => {
-    const [note, setNote] = useState([]);
+    const { admin, user } = useAuth();
+    const [note, setNote] = useState({});
     const [notes, setNotes] = useState([]);
-    const [editNote, setEditNote] = useState({});
-    const { admin } = useAuth();
+    const [editNote, setEditNote] = useState('');
 
     useEffect(() => {
         fetch('https://fathomless-beach-05738.herokuapp.com/notes')
@@ -15,20 +15,14 @@ const AddNotes = () => {
             .then(data => setNotes(data))
     }, [])
 
+    const myNotes = notes.filter(note => note.email === user.email);
+
     const handleOnChange = e => {
         const field = e.target.name;
         const value = e.target.value;
-        const noteInfo = { ...note };
+        const noteInfo = { ...note, email: user.email };
         noteInfo[field] = value;
         setNote(noteInfo);
-    };
-
-    const handleUpdateChange = e => {
-        const field = e.target.name;
-        const value = e.target.value;
-        const noteUpdateInfo = { ...note };
-        noteUpdateInfo[field] = value;
-        setEditNote(noteUpdateInfo);
     };
 
     const handleSaveChange = () => {
@@ -118,7 +112,7 @@ const AddNotes = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {notes.map(renderUser)}
+                        {admin.admin ? notes.map(renderUser) : myNotes.map(renderUser)}
                     </tbody>
                 </table>
             }

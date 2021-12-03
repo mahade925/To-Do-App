@@ -20,7 +20,7 @@ function App() {
             <Route path="/signup">
               <Signup></Signup>
             </Route>
-            <Route path="/dashboard">
+            <Route path="/dashboard/dashboardhome">
               <Dashboard></Dashboard>
             </Route>
             <Route path="/addnotes">
